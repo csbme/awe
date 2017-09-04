@@ -11,27 +11,22 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Convert {
-    private static final String SINGLE_LINE_BREAK = "\n";
+    private static final String LINE_BREAK_SINGLE = "\n";
+    private static final String LINE_BREAK_DOUBLE = "\n\n";
     private static final String SPACE = " ";
     private static final String DOT = ".";
+    public static final String COLON = ": ";
+    public static final String DEVIDER = " - ";
 
     public TextField height, weight;
     public Button btn_convert, btn_clear;
     public Label label_height, label_weight, result;
     private Calculate calculate;
 
-    public ResourceBundle msg;
+    private ResourceBundle msg;
 
-    public ResourceBundle getMsg() {
-        return msg;
-    }
-
-    public String getTranslation(String key) {
-        return getMsg().getString(key);
-    }
-
-    public Convert() {
-
+    private String getTranslation(String key) {
+        return msg.getString(key);
     }
 
     public void onClear() {
@@ -96,36 +91,34 @@ public class Convert {
     }
 
     public void onConvert() {
-
         if (!requiredInputIsSet()) {
             displayError();
-        }
+        } else {
+            getResult().setText(resultString());
 
-        getResult().setText(resultString());
-
-        if (!getCalculateService().hasPerfectBmi(getBmi())) {
-            getResult().setText(perfectBmi());
+            if (!getCalculateService().hasIdealBmi(getBmi())) {
+                getResult().setText(perfectBmi());
+            }
         }
     }
 
     private String resultString() {
         return getTranslation("msg.bmi")
-                + ": "
+                + COLON
+                + SPACE
                 + getBmi()
-                + " - "
+                + DEVIDER
                 + getCalculateService().classifyTest(getBmi());
     }
 
     private String perfectBmi() {
-
-
         return getResult().getText()
-                + SINGLE_LINE_BREAK
+                + LINE_BREAK_DOUBLE
                 + getTranslation("msg.ideal_weight_at")
                 + SPACE
                 + getCalculateService().getIdealWeightForHeight(getHeightInput(), getBmi())
                 + getTranslation("msg.kg")
-                + SINGLE_LINE_BREAK
+                + SPACE
                 + getTranslation("msg.with_weight_change_of")
                 + SPACE
                 + getCalculateService().getWeightDifference(getHeightInput(), getBmi(), getWeightInput())
@@ -139,7 +132,7 @@ public class Convert {
 
     private boolean requiredInputIsSet() {
         try {
-            return ((getWeightInput() >= 0) && (getHeightInput() >= 0));
+            return ((getWeightInput() > 0) && (getHeightInput() > 0));
         } catch (Exception e) {
             e.printStackTrace();
         }

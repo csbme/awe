@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("View/converter.fxml"));
         primaryStage.setTitle("Ultimate Science Converter 3001 (Certified Apex-Plus-BMI Edition)");
-        primaryStage.setScene(new Scene(root, 500, 200));
+        primaryStage.setScene(new Scene(root, 500, 250));
         primaryStage.show();
     }
 }

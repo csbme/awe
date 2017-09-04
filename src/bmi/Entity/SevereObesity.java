@@ -1,15 +1,17 @@
 package bmi.Entity;
 
-import bmi.Constant.BmiDefinition;
+import bmi.Constant.IdealBmi;
 import bmi.Interface.ClassificationInterface;
+
+import java.util.ResourceBundle;
 
 public class SevereObesity implements ClassificationInterface {
 
     public String getClassification() {
-        return BmiDefinition.SEVERE_OBESITY;
+        return ResourceBundle.getBundle("bmi").getString("bmi_classification.severe_obesity");
     }
 
     public double perfectBmi() {
-        return 24.9;
+        return IdealBmi.OVERWEIGHT;
     }
 }
