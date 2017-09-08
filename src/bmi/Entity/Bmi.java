@@ -9,7 +9,6 @@ public class Bmi implements ValueInterface {
         this.value = value;
     }
 
-    @Override
     public double getValue() {
         return value;
     }

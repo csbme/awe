@@ -13,7 +13,6 @@ public class Translator implements bmi.Interface.TranslatorInterface {
         return resourceBundle;
     }
 
-    @Override
     public String translate(String key) {
         return getResourceBundle().getString(key);
     }

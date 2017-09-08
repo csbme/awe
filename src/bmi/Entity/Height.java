@@ -2,7 +2,7 @@ package bmi.Entity;
 
 import bmi.Interface.ValueInterface;
 
-public class Height implements ValueInterface{
+public class Height implements ValueInterface {
     private double value;
 
     public Height(double value) {

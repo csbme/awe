@@ -1,16 +1,12 @@
 package bmi.Controller;
 
-import bmi.Entity.TextAndStuff;
+import bmi.Entity.*;
 import bmi.Interface.TranslatorInterface;
 import bmi.Service.Calculator;
 import bmi.Service.Translator;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
 
 public class Convert {
     public TextField height, weight;
@@ -19,38 +15,46 @@ public class Convert {
 
     private Calculator calculator;
     private TranslatorInterface translator;
-    private TextAndStuff textAndStuff;
 
     public void initialize() {
         calculator = new Calculator();
-        textAndStuff = new TextAndStuff();
         translator = new Translator();
 
         setLabels();
     }
 
-    public void onClear() {
+    public void onClearAction() {
         setLabels();
         clearResult();
     }
 
+    public boolean onConvertAction() {
+        return requiredInputIsSet() ? responseSuccess() : responseError();
+    }
+
     //fixme
-    public void onConvert() {
-        if (!requiredInputIsSet()) {
-            displayError();
-        } else {
-            getCalculateService().createHeight(getHeightInput());
-            getCalculateService().createWeight(getWeightInput());
-            getCalculateService().createBmi();
+    private boolean responseSuccess() {
+        Weight weight = new Weight(getWeightInput());
+        Height height = new Height(getHeightInput());
 
-            getLabelResult().setText(getTextAndStuff().resultString(getCalculateService().classifyWeightHeightRatio(), getCalculateService().round(getCalculateService().getBmi().getValue())));
+        Prepare prepare = new Prepare(weight, height);
+        getCalculateService().setPrepare(prepare);
 
-            if (!getCalculateService().hasIdealBmi()) {
-                String textPerfectBmi = getTextAndStuff().perfectBmi(getCalculateService().getIdealWeightForHeight(), getCalculateService().getWeightDifference(), getLabelResult());
+        Bmi bmi = new Bmi(getCalculateService().calculateBmi());
+        prepare.setBmi(bmi);
 
-                getLabelResult().setText(textPerfectBmi);
-            }
+        prepare.setIdealWeightForHeight(getCalculateService().getIdealWeightForHeight());
+        prepare.setWeightDifference(getCalculateService().getWeightDifference());
+        prepare.setClassificationInterface(getCalculateService().getClassificationInterface());
+
+        TextAndStuff textAndStuff = new TextAndStuff(prepare);
+        getLabelResult().setText(textAndStuff.resultString());
+
+        if (!getCalculateService().hasIdealBmi()) {
+            getLabelResult().setText(textAndStuff.perfectBmi(getLabelResult()));
         }
+
+        return true;
     }
 
     private TranslatorInterface getTranslator() {
@@ -61,29 +65,13 @@ public class Convert {
         return getTranslator().translate(key);
     }
 
-    private TextAndStuff getTextAndStuff() {
-        return textAndStuff;
-    }
-
-    private void clearResult() {
-        getLabelResult().setText(null);
-    }
-
-    //fixme
     private double castStringToDouble(String value) {
-        NumberFormat format = NumberFormat.getInstance(Locale.GERMANY);
-        Number number = null;
-
-        try {
-            number = format.parse(value);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return number.doubleValue();
+        return Double.parseDouble(value.replace(",", "."));
     }
 
-    private void displayError() {
+    private boolean responseError() {
         getLabelResult().setText(translate("msg.error"));
+        return false;
     }
 
     private Button getBtnClear() {
@@ -102,6 +90,10 @@ public class Convert {
         return height;
     }
 
+    private TextField getWeight() {
+        return weight;
+    }
+
     private double getHeightInput() {
         return castStringToDouble(getHeight().getText());
     }
@@ -118,30 +110,16 @@ public class Convert {
         return labelWeight;
     }
 
-    private TextField getWeight() {
-        return weight;
-    }
-
     private double getWeightInput() {
         return castStringToDouble(getWeight().getText());
     }
 
     private boolean requiredInputIsSet() {
-        try {
-            return ((getWeightInput() > 0) && (getHeightInput() > 0));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
+        return ((getWeightInput() > 0) && (getHeightInput() > 0));
     }
 
-    private void setLabelHeight() {
-        getLabelHeight().setText(translate("label.height"));
-    }
-
-    private void setLabelWeight() {
-        getLabelWeight().setText(translate("label.weight"));
+    private void clearResult() {
+        getLabelResult().setText(null);
     }
 
     private void setLabels() {
@@ -153,15 +131,23 @@ public class Convert {
         setTextClearBtn();
     }
 
-    private void setTextClearBtn() {
-        getBtnClear().setText(translate("btn_label.clear"));
+    private void setLabelHeight() {
+        getLabelHeight().setText(translate("label.height"));
+    }
+
+    private void setLabelWeight() {
+        getLabelWeight().setText(translate("label.weight"));
+    }
+
+    private void setTextFieldDefault(TextField t) {
+        t.setText(translate("input_placeholder.double_zero"));
     }
 
     private void setTextConvertBtn() {
         getBtnConvert().setText(translate("btn_label.convert"));
     }
 
-    private void setTextFieldDefault(TextField t) {
-        t.setText(translate("input_placeholder.double_zero"));
+    private void setTextClearBtn() {
+        getBtnClear().setText(translate("btn_label.clear"));
     }
 }

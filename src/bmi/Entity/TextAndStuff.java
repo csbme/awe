@@ -1,6 +1,7 @@
 package bmi.Entity;
 
 import bmi.Interface.TranslatorInterface;
+import bmi.Service.Translator;
 import javafx.scene.control.Label;
 
 public class TextAndStuff {
@@ -12,36 +13,46 @@ public class TextAndStuff {
     private static final String DIVIDER = " - ";
 
     private TranslatorInterface translator;
+    private Prepare prepare;
+
+    public TextAndStuff(Prepare prepare) {
+        this.prepare = prepare;
+        this.translator = new Translator();
+    }
 
     private TranslatorInterface getTranslator() {
         return translator;
+    }
+
+    private Prepare getPrepare() {
+        return prepare;
     }
 
     private String translate(String key) {
         return getTranslator().translate(key);
     }
 
-    public String perfectBmi(double idealWeightForHeight, double weightDifference, Label labelResult) {
+    public String perfectBmi(Label labelResult) {
         return labelResult.getText()
                 + LINE_BREAK_DOUBLE
                 + translate("msg.ideal_weight_at")
                 + SPACE
-                + idealWeightForHeight
+                + getPrepare().getIdealWeightForHeight()
                 + translate("msg.kg")
                 + SPACE
                 + translate("msg.with_weight_change_of")
                 + SPACE
-                + weightDifference
+                + getPrepare().getWeightDifference()
                 + translate("msg.kg")
                 + DOT;
     }
 
-    public String resultString(String classifyWeightHeightRatio, double bmi) {
+    public String resultString() {
         return translate("msg.bmi")
                 + COLON
                 + SPACE
-                + bmi
+                + getPrepare().getBmi().getValue()
                 + DIVIDER
-                + classifyWeightHeightRatio;
+                + translate(getPrepare().getClassificationInterface().getClassification());
     }
 }

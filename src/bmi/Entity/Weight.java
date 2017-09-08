@@ -2,7 +2,7 @@ package bmi.Entity;
 
 import bmi.Interface.ValueInterface;
 
-public class Weight implements ValueInterface{
+public class Weight implements ValueInterface {
     private double value;
 
     public Weight(double value) {
