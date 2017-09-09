@@ -1,4 +1,4 @@
-package bmi.Entity;
+package bmi.Entity.Classification;
 
 import bmi.Constant.IdealBmi;
 import bmi.Interface.ClassificationInterface;

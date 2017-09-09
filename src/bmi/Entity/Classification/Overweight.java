@@ -1,12 +1,12 @@
-package bmi.Entity;
+package bmi.Entity.Classification;
 
 import bmi.Constant.IdealBmi;
 import bmi.Interface.ClassificationInterface;
 
-public class ExtremeObesity implements ClassificationInterface {
+public class Overweight implements ClassificationInterface {
 
     public String getClassification() {
-        return "bmi_classification.extreme_obesity";
+        return "bmi_classification.overweight";
     }
 
     public double perfectBmi() {

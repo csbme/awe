@@ -1,6 +1,9 @@
 package bmi.Controller;
 
 import bmi.Entity.*;
+import bmi.Entity.NaiveValue.Bmi;
+import bmi.Entity.NaiveValue.Height;
+import bmi.Entity.NaiveValue.Weight;
 import bmi.Interface.TranslatorInterface;
 import bmi.Service.Calculator;
 import bmi.Service.Translator;

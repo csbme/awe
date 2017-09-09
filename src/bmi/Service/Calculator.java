@@ -3,6 +3,7 @@ package bmi.Service;
 import bmi.Constant.ClassificationBmi;
 import bmi.Constant.IdealBmi;
 import bmi.Entity.*;
+import bmi.Entity.Classification.*;
 import bmi.Interface.ClassificationInterface;
 
 import java.util.TreeMap;

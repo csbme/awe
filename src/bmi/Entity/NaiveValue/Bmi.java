@@ -1,4 +1,4 @@
-package bmi.Entity;
+package bmi.Entity.NaiveValue;
 
 import bmi.Interface.ValueInterface;
 

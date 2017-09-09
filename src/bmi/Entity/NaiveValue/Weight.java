@@ -1,11 +1,11 @@
-package bmi.Entity;
+package bmi.Entity.NaiveValue;
 
 import bmi.Interface.ValueInterface;
 
-public class Height implements ValueInterface {
+public class Weight implements ValueInterface {
     private double value;
 
-    public Height(double value) {
+    public Weight(double value) {
         this.value = value;
     }
 
