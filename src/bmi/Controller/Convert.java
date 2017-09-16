@@ -24,6 +24,12 @@ public class Convert {
         translator = new Translator();
 
         setLabels();
+        attacheEventListener();
+    }
+
+    private void attacheEventListener() {
+        getHeight().textProperty().addListener((observable) -> onConvertAction());
+        getWeight().textProperty().addListener((observable) -> onConvertAction());
     }
 
     public void onClearAction() {
