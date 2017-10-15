@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>entities.TextElement</OriginalElement>
+  <nodes>
+    <node x="167.0" y="102.0">entities.TextElement</node>
+    <node x="62.0" y="0.0">interfaces.RenderableObjectInterface</node>
+    <node x="0.0" y="102.0">entities.JsonElement</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="entities.TextElement" target="interfaces.RenderableObjectInterface">
+      <point x="0.0" y="-26.0" />
+      <point x="240.5" y="77.0" />
+      <point x="204.5" y="77.0" />
+      <point x="47.5" y="26.0" />
+    </edge>
+    <edge source="entities.JsonElement" target="interfaces.RenderableObjectInterface">
+      <point x="0.0" y="-26.0" />
+      <point x="73.5" y="77.0" />
+      <point x="109.5" y="77.0" />
+      <point x="-47.5" y="26.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="2.3000000000000007" x="204.97929606625246" y="95.015723040962" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
