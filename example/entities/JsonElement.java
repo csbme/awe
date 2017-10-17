@@ -2,6 +2,9 @@ package entities;
 
 import interfaces.RenderableObjectInterface;
 
+/**
+ * The type Json element.
+ */
 public class JsonElement implements RenderableObjectInterface {
 
     public String render() {

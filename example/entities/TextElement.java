@@ -2,6 +2,9 @@ package entities;
 
 import interfaces.RenderableObjectInterface;
 
+/**
+ * The type Text element.
+ */
 public class TextElement implements RenderableObjectInterface {
 
     public String render() {
