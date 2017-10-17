@@ -2,6 +2,7 @@
 
 ## Beschreibung
 Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln.
+- https://stackoverflow.com/a/9071207
 
 ## Klassendiagramm
 ![](resources/img/design_pattern_composition.png)
@@ -12,8 +13,10 @@ Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz d
 3. ["Text"-Klasse](example/entities/TextElement.java)
 
 ## Vor- und Nachteile
+- http://www.artima.com/designtechniques/compoinhP.html
 
 ## Anwendungsfälle
+%
 
 ## Übungsaufgabe
 Ergänze "JsonElement" und "TextElement" um "HtmlElement". Alternativ schaue dir dieses Video an:
