@@ -8,6 +8,7 @@ Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz d
 ![](resources/img/design_pattern_composition.png)
 
 ## Beispielcodierung
+Siehe ausführbares [Beispiel (example/Main.java)](example/Main.java), bestehend aus:
 1. ["Renderable"-Interface](example/interfaces/RenderableObjectInterface.java)
 2. ["Json"-Klasse](example/entities/JsonElement.java)
 3. ["Text"-Klasse](example/entities/TextElement.java)
