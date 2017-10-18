@@ -1,7 +1,7 @@
 # Strukturmuster "Komposition"
 
 ## Beschreibung
-Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln: Anstatt mit **konreten Instanzen eines Objekts** zu arbeiten, wird ein **Interface** verwendet. 
+Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln: Anstatt mit **konkreten Instanzen eines Objekts** zu arbeiten, wird ein **Interface** verwendet. 
 - https://stackoverflow.com/a/9071207
 
 ## Klassendiagramm
@@ -12,21 +12,20 @@ Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz d
 2. ["Json"-Klasse](example/entities/JsonElement.java)
 3. ["Text"-Klasse](example/entities/TextElement.java)
 
-## Vor- und Nachteile
-
-Vererbung verlangt, zu einem sehr frühen Zeitpunkt die genau Verwendung und Aufgaben eines Objektes zu kennen. Gemeinsamkeiten werden zusammengefasst und Spezialisierungen abgekoppelt; die **„IS-A“**-Beziehung: Dog extends Animal bedeutet dog IS-A(n) animal.
-
-Sind später nun Änderungen erforderlich, auch wenn diese augenscheinlich nur sehr klein sind, müssen unter Umständen ein großer Teil der bestehenden Datenstruktur angepasst werden. Kompostion ermöglicht hier einen flexiebeleren Ansatz, der spätere Änderungen wesetlich vereinfacht. Bei der **„HAS-A“**-Beziehung wird schlicht auf andere Objekte refenenziert: LoggingService HAS-A(n) Exception.
-
-- https://www.w3resource.com/java-tutorial/inheritance-composition-relationship.php
-- http://www.artima.com/designtechniques/compoinhP.html
-
 ## Anwendungsfälle
 In der objektorientierten Programmierung werden Objekte für den Programmfluss verwendet; besonders häufig kommen **Parameter- und Returntyps** vor. Sind diese nun fest definiert und als konkrete Klasse implementiert, werden spätere Änderungen unnötig erschwert.
 
 **Beispiel**: Das catchen aller ExampleException soll geloggt werden. Wer dafür verwendeten LoggingService bekommt diese übergeben (Dependency Injection). Warum nun den LoggingService auf genau ExampleException beschränken? Stattdessen wird ein Interface verwendet.
  
  Nach einiger Zeit sollen zusätzliche Exception-Typs geloggt werden. Da es nun nur eine Abhängigkeit auf ein Interface gibt, ist diese Anforderung schnell umgesetzt.
+
+## Vor- und Nachteile
+Vererbung verlangt, zu einem sehr frühen Zeitpunkt die genau Verwendung und Aufgaben eines Objektes zu kennen. Gemeinsamkeiten werden zusammengefasst und Spezialisierungen abgekoppelt; die **„IS-A“**-Beziehung: _Dog extends Animal_ bedeutet _dog IS-A(n) animal_.
+
+Sind später nun Änderungen erforderlich, auch wenn diese augenscheinlich nur sehr klein sind, muss unter Umständen ein großer Teil der bestehenden Datenstruktur angepasst werden. Kompostion ermöglicht hier einen flexibleren Ansatz, der spätere Änderungen wesentlich vereinfacht. Bei der **„HAS-A“**-Beziehung wird schlicht auf andere Objekte refenenziert: _LoggingService HAS-A(n) Exception_.
+
+- https://www.w3resource.com/java-tutorial/inheritance-composition-relationship.php
+- http://www.artima.com/designtechniques/compoinhP.html
 
 ## Übungsaufgabe
 Ergänze "JsonElement" und "TextElement" um "HtmlElement". Alternativ schaue dir dieses Video an:
