@@ -1,38 +1,54 @@
-# Strukturmuster "Komposition"
+# Entwurfsmuster "Kompositum"
 
 ## Beschreibung
-Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln: Anstatt mit **konkreten Instanzen eines Objekts** zu arbeiten, wird ein **Interface** verwendet. 
-- https://stackoverflow.com/a/9071207
+Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln: Anstatt mit _konkreten Instanzen eines Objekts_ zu arbeiten, wird ein _Interface_ verwendet - die sogenannte **Komponente**. 
+
+Objekte die dieses Interface implementieren werden **Blätter** genannt. Das **Kompositum** kann, sich selbst außgeschlossen, alle Instanzen einer Komponente beinhalten.
 
 ## Klassendiagramm
-![](resources/img/design_pattern_composition.png)
+![](resources/img/composite_uml_class_diagram.svg)
 
 ## Beispielcodierung
 Siehe ausführbares [Beispiel (example/Main.java)](example/Main.java), bestehend aus:
-1. ["Renderable"-Interface](example/interfaces/RenderableObjectInterface.java)
-2. ["Json"-Klasse](example/entities/JsonElement.java)
-3. ["Text"-Klasse](example/entities/TextElement.java)
 
-## Anwendungsfälle
-In der objektorientierten Programmierung werden Objekte für den Programmfluss verwendet; besonders häufig kommen **Parameter- und Returntyps** vor. Sind diese nun fest definiert und als konkrete Klasse implementiert, werden spätere Änderungen unnötig erschwert.
-
-**Beispiel**: Das catchen aller ExampleException soll geloggt werden. Wer dafür verwendeten LoggingService bekommt diese übergeben (Dependency Injection). Warum nun den LoggingService auf genau ExampleException beschränken? Stattdessen wird ein Interface verwendet.
- 
- Nach einiger Zeit sollen zusätzliche Exception-Typs geloggt werden. Da es nun nur eine Abhängigkeit auf ein Interface gibt, ist diese Anforderung schnell umgesetzt.
-
-## Vor- und Nachteile
-Vererbung verlangt, zu einem sehr frühen Zeitpunkt die genau Verwendung und Aufgaben eines Objektes zu kennen. Gemeinsamkeiten werden zusammengefasst und Spezialisierungen abgekoppelt; die **„IS-A“**-Beziehung: _Dog extends Animal_ bedeutet _dog IS-A(n) animal_.
-
-Sind später nun Änderungen erforderlich, auch wenn diese augenscheinlich nur sehr klein sind, muss unter Umständen ein großer Teil der bestehenden Datenstruktur angepasst werden. Kompostion ermöglicht hier einen flexibleren Ansatz, der spätere Änderungen wesentlich vereinfacht. Bei der **„HAS-A“**-Beziehung wird schlicht auf andere Objekte refenenziert: _LoggingService HAS-A(n) Exception_.
-
-- https://www.w3resource.com/java-tutorial/inheritance-composition-relationship.php
-- http://www.artima.com/designtechniques/compoinhP.html
+1. ["Component"-Interface](example/interfaces/ComponentInterface.java)
+1. ["Composite"-Klasse](example/entities/Composite.java)
+1. ["Leaf"-Klasse](example/entities/Leaf.java)
 
 ## Übungsaufgabe
-Ergänze "JsonElement" und "TextElement" um "HtmlElement". Alternativ schaue dir dieses Video an:
+Probiere alle fünf Beispiele in der [Main (example/Main.java)](example/Main.java) aus. Lies bei Bedarf die erklärenden Kommentare. Beantworte, warum es im letzten Beispiel zu einem Fehler kommt?
 
-[![Composition over Inheritance](https://img.youtube.com/vi/wfMtDGfHWpA/0.jpg)](https://www.youtube.com/watch?v=wfMtDGfHWpA)
+## Lösung
+1. **firstExample()**
+    ```
+    Composite #6 here.
+    ```
 
-## Quellen
-- https://github.com/domnikl/DesignPatternsPHP
-- https://medium.com/humans-create-software/composition-over-inheritance-cb6f88070205
+1. **secondExample()**
+    ```
+    Composite #27 here.
+    
+    "Hello" says leaf #25.
+    "Hello" says leaf #78.
+    ```
+
+1. **thirdExample()**
+    ```
+    Composite #72 here.
+    Composite #41 here.
+    ```
+
+1. **fourthExample()**
+    ```
+    Composite #12 here.
+    "Hello" says leaf #71.
+    
+    Composite #99 here.
+    "Hello" says leaf #71.
+    "Hello" says leaf #72.
+    ```
+ 
+1. **Rekursion**
+ 
+## Bildquellen
+- []()https://upload.wikimedia.org/wikipedia/commons/5/5a/Composite_UML_class_diagram_%28fixed%29.svg)
