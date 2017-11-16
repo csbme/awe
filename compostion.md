@@ -3,7 +3,7 @@
 ## Beschreibung
 Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz des Objekts zu behandeln: Anstatt mit _konkreten Instanzen eines Objekts_ zu arbeiten, wird ein _Interface_ verwendet - die sogenannte **Komponente**. 
 
-Objekte die dieses Interface implementieren werden **Blätter** genannt. Das **Kompositum** kann, sich selbst außgeschlossen, alle Instanzen einer Komponente beinhalten.
+Objekte die dieses Interface implementieren werden **Blätter** genannt. Das **Kompositum** implementiert dies ebenfalls. Es kann, sich selbst außgeschlossen, alle Instanzen einer Komponente beinhalten.
 
 ## Klassendiagramm
 ![](resources/img/1000px-Composite_UML_class_diagram_(fixed).svg.png)
