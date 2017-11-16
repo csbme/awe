@@ -6,7 +6,7 @@ Komposition ermöglicht es, eine Gruppe von Objekten wie eine einzelne Instanz d
 Objekte die dieses Interface implementieren werden **Blätter** genannt. Das **Kompositum** kann, sich selbst außgeschlossen, alle Instanzen einer Komponente beinhalten.
 
 ## Klassendiagramm
-![](resources/img/composite_uml_class_diagram.svg)
+![](resources/img/1000px-Composite_UML_class_diagram_(fixed).svg.png)
 
 ## Beispielcodierung
 Siehe ausführbares [Beispiel (example/Main.java)](example/Main.java), bestehend aus:
