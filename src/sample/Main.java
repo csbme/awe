@@ -1,23 +1,29 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import sample.Model.TrafficLight;
+import sample.States.Green;
+import sample.States.Red;
+import sample.States.RedYellow;
+import sample.States.Yellow;
 
-public class Main extends Application {
+public class Main {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+    public static void main(String[] args) throws InterruptedException {
+        TrafficLight trafficLight = new TrafficLight();
+
+        while (true) {
+            execute(trafficLight);
+        }
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    private static void execute(TrafficLight trafficLight) throws InterruptedException {
+        trafficLight.setState(new Green());
+        trafficLight.doAction();
+        trafficLight.setState(new Yellow());
+        trafficLight.doAction();
+        trafficLight.setState(new Red());
+        trafficLight.doAction();
+        trafficLight.setState(new RedYellow());
+        trafficLight.doAction();
     }
 }
