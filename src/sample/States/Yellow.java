@@ -1,13 +1,26 @@
 package sample.States;
 
-import sample.Interfaces.State;
+import javafx.scene.shape.Circle;
+import sample.Interfaces.StateInterface;
 
-public class Yellow implements State {
-    public String name() {
-        return "yellow";
+import java.util.ArrayList;
+
+public class Yellow implements StateInterface {
+    private ArrayList<Circle> cycles;
+
+    public Yellow(ArrayList<Circle> cycles) {
+        this.cycles = cycles;
     }
 
-    public int durationSeconds() {
-        return 1;
+    public ArrayList<Circle> getCircles() {
+        return cycles;
+    }
+
+    public int getDuration() {
+        return 2;
+    }
+
+    public String getName() {
+        return this.getClass().getSimpleName();
     }
 }

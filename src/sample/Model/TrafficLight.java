@@ -1,20 +1,52 @@
 package sample.Model;
 
-import sample.Interfaces.State;
+import javafx.scene.shape.Circle;
+import sample.Interfaces.StateInterface;
 import sample.Interfaces.TrafficLightInterface;
+
+import java.util.ArrayList;
+
 import static sample.Service.ConverterService.secondsToNanoseconds;
 
 public class TrafficLight implements TrafficLightInterface {
-    private State state;
+    private StateInterface state;
+    private ArrayList<Circle> cycles;
 
-    public void doAction() throws InterruptedException {
-        // print state name
-        System.out.println(this.state.name());
-        // sleep for state durationSeconds
-        Thread.sleep(secondsToNanoseconds(this.state.durationSeconds()));
+    public TrafficLight(ArrayList<Circle> cycles) {
+        this.cycles = cycles;
     }
 
-    public void setState(State state) {
+    public void doAction() throws InterruptedException {
+        // set all circles to invisible
+        setAllCirclesInvisible();
+
+        // show state in UI
+        for (Circle circle : getState().getCircles()) {
+            circle.setVisible(true);
+        }
+
+        // print state name
+        System.out.println(getState().getName());
+
+        // show state for x seconds
+        Thread.sleep(secondsToNanoseconds(getState().getDuration()));
+    }
+
+    public ArrayList<Circle> getCircles() {
+        return cycles;
+    }
+
+    private StateInterface getState() {
+        return this.state;
+    }
+
+    public void setState(StateInterface state) {
         this.state = state;
+    }
+
+    private void setAllCirclesInvisible() {
+        for (Circle circle : getCircles()) {
+            circle.setVisible(false);
+        }
     }
 }

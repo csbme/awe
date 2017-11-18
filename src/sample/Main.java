@@ -1,29 +1,21 @@
 package sample;
 
-import sample.Model.TrafficLight;
-import sample.States.Green;
-import sample.States.Red;
-import sample.States.RedYellow;
-import sample.States.Yellow;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
-
+public class Main extends Application {
     public static void main(String[] args) throws InterruptedException {
-        TrafficLight trafficLight = new TrafficLight();
-
-        while (true) {
-            execute(trafficLight);
-        }
+        launch(args);
     }
 
-    private static void execute(TrafficLight trafficLight) throws InterruptedException {
-        trafficLight.setState(new Green());
-        trafficLight.doAction();
-        trafficLight.setState(new Yellow());
-        trafficLight.doAction();
-        trafficLight.setState(new Red());
-        trafficLight.doAction();
-        trafficLight.setState(new RedYellow());
-        trafficLight.doAction();
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Traffic Light Simulator 3000 'Final Apex Elite'-Edition");
+        primaryStage.setScene(new Scene(root, 250, 650));
+        primaryStage.show();
     }
 }
