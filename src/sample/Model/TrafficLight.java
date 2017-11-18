@@ -8,16 +8,24 @@ import java.util.ArrayList;
 
 import static sample.Service.ConverterService.secondsToNanoseconds;
 
+/**
+ * The type Traffic light.
+ */
 public class TrafficLight implements TrafficLightInterface {
     private StateInterface state;
     private ArrayList<Circle> cycles;
 
+    /**
+     * Instantiates a new Traffic light.
+     *
+     * @param cycles the cycles
+     */
     public TrafficLight(ArrayList<Circle> cycles) {
         this.cycles = cycles;
     }
 
     public void doAction() throws InterruptedException {
-        // set all circles to invisible
+        // set all circles invisible
         setAllCirclesInvisible();
 
         // show state in UI
@@ -26,13 +34,18 @@ public class TrafficLight implements TrafficLightInterface {
         }
 
         // print state name
-        System.out.println(getState().getName());
+        System.out.println(getState().getClass().getSimpleName());
 
         // show state for x seconds
         Thread.sleep(secondsToNanoseconds(getState().getDuration()));
     }
 
-    public ArrayList<Circle> getCircles() {
+    /**
+     * Gets circles.
+     *
+     * @return the circles
+     */
+    private ArrayList<Circle> getCircles() {
         return cycles;
     }
 

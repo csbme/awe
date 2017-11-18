@@ -10,10 +10,18 @@ import sample.States.Yellow;
 
 import java.util.ArrayList;
 
+/**
+ * The type Controller.
+ */
 public class Controller {
     public Circle red, yellow, green;
     private TrafficLightInterface trafficLight;
 
+    /**
+     * Initialize.
+     *
+     * @throws InterruptedException the interrupted exception
+     */
     public void initialize() throws InterruptedException {
         ArrayList<Circle> circles = new ArrayList<>();
         circles.add(red);
@@ -24,13 +32,13 @@ public class Controller {
         startAction();
     }
 
-    public void startAction() throws InterruptedException {
+    private void startAction() throws InterruptedException {
         Thread t = new Thread() {
             @Override
             public void run() {
                 try {
                     while (true) {
-                        execute(getTrafficLight());
+                        execute();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -44,26 +52,39 @@ public class Controller {
         return trafficLight;
     }
 
-    private void execute(TrafficLightInterface trafficLight) throws InterruptedException {
-        ArrayList<Circle> circle_1 = new ArrayList<>();
-        circle_1.add(green);
-        trafficLight.setState(new Green(circle_1));
-        trafficLight.doAction();
+    private void execute() throws InterruptedException {
+        trafficLightGreen();
+        trafficLightYellow();
+        trafficLightRed();
+        trafficLightRedYellow();
+    }
 
-        ArrayList<Circle> circle_2 = new ArrayList<>();
-        circle_2.add(yellow);
-        trafficLight.setState(new Yellow(circle_2));
-        trafficLight.doAction();
+    private void trafficLightGreen() throws InterruptedException {
+        ArrayList<Circle> circles = new ArrayList<>();
+        circles.add(green);
+        getTrafficLight().setState(new Green(circles));
+        getTrafficLight().doAction();
+    }
 
-        ArrayList<Circle> circle_3 = new ArrayList<>();
-        circle_3.add(red);
-        trafficLight.setState(new Red(circle_3));
-        trafficLight.doAction();
+    private void trafficLightYellow() throws InterruptedException {
+        ArrayList<Circle> circles = new ArrayList<>();
+        circles.add(yellow);
+        getTrafficLight().setState(new Yellow(circles));
+        getTrafficLight().doAction();
+    }
 
-        ArrayList<Circle> circle_4 = new ArrayList<>();
-        circle_4.add(red);
-        circle_4.add(yellow);
-        trafficLight.setState(new RedYellow(circle_4));
-        trafficLight.doAction();
+    private void trafficLightRed() throws InterruptedException {
+        ArrayList<Circle> circles = new ArrayList<>();
+        circles.add(red);
+        getTrafficLight().setState(new Red(circles));
+        getTrafficLight().doAction();
+    }
+
+    private void trafficLightRedYellow() throws InterruptedException {
+        ArrayList<Circle> circles = new ArrayList<>();
+        circles.add(red);
+        circles.add(yellow);
+        getTrafficLight().setState(new RedYellow(circles));
+        getTrafficLight().doAction();
     }
 }

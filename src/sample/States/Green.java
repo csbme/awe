@@ -5,9 +5,17 @@ import sample.Interfaces.StateInterface;
 
 import java.util.ArrayList;
 
+/**
+ * The type Green.
+ */
 public class Green implements StateInterface {
     private ArrayList<Circle> cycles;
 
+    /**
+     * Instantiates a new Green.
+     *
+     * @param cycles the cycles
+     */
     public Green(ArrayList<Circle> cycles) {
         this.cycles = cycles;
     }
@@ -18,9 +26,5 @@ public class Green implements StateInterface {
 
     public int getDuration() {
         return 5;
-    }
-
-    public String getName() {
-        return this.getClass().getSimpleName();
     }
 }
