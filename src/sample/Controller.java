@@ -33,19 +33,17 @@ public class Controller {
     }
 
     private void startAction() throws InterruptedException {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
+        Thread thread = new Thread(() -> {
+            while (true) {
                 try {
-                    while (true) {
-                        execute();
-                    }
+                    execute();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        };
-        t.start();
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private TrafficLightInterface getTrafficLight() {
