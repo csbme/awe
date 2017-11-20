@@ -16,6 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Traffic Light Simulator 3000 'Final Apex Elite'-Edition");
         primaryStage.setScene(new Scene(root, 250, 650));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
