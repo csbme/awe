@@ -1,4 +1,4 @@
-package sample.Service;
+package sample.service;
 
 /**
  * The type Converter service.

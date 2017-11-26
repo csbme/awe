@@ -1,4 +1,4 @@
-package sample.Interfaces;
+package sample.interfaces;
 
 import javafx.scene.shape.Circle;
 

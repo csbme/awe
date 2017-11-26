@@ -1,15 +1,15 @@
-package sample.Interfaces;
+package sample.interfaces;
 
 /**
  * The interface Traffic light interface.
  */
 public interface TrafficLightInterface {
     /**
-     * Do action.
+     * Execute state.
      *
      * @throws InterruptedException the interrupted exception
      */
-    void doAction() throws InterruptedException;
+    void executeState() throws InterruptedException;
 
     /**
      * Sets state.
