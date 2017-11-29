@@ -1,5 +1,7 @@
-package sample;
+package app;
 
+import controller.RootLayoutController;
+import controller.TrafficLightController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,15 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import sample.controller.RootLayoutController;
-import sample.controller.TrafficLightController;
 
 import java.io.IOException;
 
 /**
- * The type Main app.
+ * The type Main.
  */
-public class MainApp extends Application {
+public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private RootLayoutController rootLayoutController;
@@ -46,7 +46,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Traffic Light Simulator 3000 'Final Apex Elite'-Edition");
 
         // Set the application icon.
-        this.primaryStage.getIcons().add(new Image("sample/resources/images/java.png"));
+        this.primaryStage.getIcons().add(new Image("resources/images/Java.png"));
         primaryStage.setResizable(false);
 
         initRootLayout();
@@ -76,17 +76,17 @@ public class MainApp extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("../view/RootLayout.fxml"));
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
-            // Give the controller access to the main app.
+            // Give the controller access to the app app.
             RootLayoutController controller = loader.getController();
             setRootLayoutController(controller);
-            controller.setMainApp(this);
+            controller.setMain(this);
 
             primaryStage.show();
 
@@ -99,16 +99,16 @@ public class MainApp extends Application {
         try {
             // Load overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/TrafficLight.fxml"));
+            loader.setLocation(Main.class.getResource("../view/TrafficLight.fxml"));
             AnchorPane trafficLight = loader.load();
 
             // Set trafficLight into the center of root layout.
             rootLayout.setCenter(trafficLight);
 
-            // Give the controller access to the main app.
+            // Give the controller access to the app app.
             TrafficLightController controller = loader.getController();
             setTrafficLightController(controller);
-            controller.setMainApp(this);
+            controller.setMain(this);
 
         } catch (IOException e) {
             e.printStackTrace();
