@@ -1,6 +1,6 @@
-package model.state;
+package com.csbme.awe.model.state;
 
-import interfaces.StateInterface;
+import com.csbme.awe.interfaces.StateInterface;
 import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
@@ -20,6 +20,6 @@ public class Green extends AbstractState implements StateInterface {
     }
 
     public int getDuration() {
-        return 5;
+        return 4;
     }
 }

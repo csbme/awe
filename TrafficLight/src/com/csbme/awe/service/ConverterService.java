@@ -1,9 +1,9 @@
-package service;
+package com.csbme.awe.service;
 
 /**
  * The type Converter service.
  */
-public final class ConverterService {
+public class ConverterService {
     /**
      * Seconds to nanoseconds int.
      *

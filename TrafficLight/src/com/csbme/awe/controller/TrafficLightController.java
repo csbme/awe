@@ -1,14 +1,15 @@
-package controller;
+package com.csbme.awe.controller;
 
-import app.Main;
-import interfaces.TrafficLightInterface;
+import com.csbme.awe.Main;
+import com.csbme.awe.interfaces.TrafficLightInterface;
+import com.csbme.awe.model.TrafficLight;
+import com.csbme.awe.model.state.Green;
+import com.csbme.awe.model.state.Red;
+import com.csbme.awe.model.state.RedYellow;
+import com.csbme.awe.model.state.Yellow;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.shape.Circle;
-import model.state.Green;
-import model.state.Red;
-import model.state.RedYellow;
-import model.state.Yellow;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class TrafficLightController {
      */
     public void initialize() throws InterruptedException {
         setCircles();
-        setTrafficLight(new model.TrafficLight(getCircles(), getTextArea()));
+        setTrafficLight(new TrafficLight(getCircles(), getTextArea()));
         startInit();
     }
 

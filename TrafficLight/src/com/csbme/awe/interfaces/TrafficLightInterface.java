@@ -1,4 +1,4 @@
-package interfaces;
+package com.csbme.awe.interfaces;
 
 /**
  * The interface Traffic light interface.

@@ -1,4 +1,4 @@
-package model.state;
+package com.csbme.awe.model.state;
 
 import javafx.scene.shape.Circle;
 

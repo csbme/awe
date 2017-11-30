@@ -1,10 +1,10 @@
-package model;
+package com.csbme.awe.model;
 
-import interfaces.StateInterface;
-import interfaces.TrafficLightInterface;
+import com.csbme.awe.interfaces.StateInterface;
+import com.csbme.awe.interfaces.TrafficLightInterface;
+import com.csbme.awe.service.ConverterService;
 import javafx.scene.control.TextArea;
 import javafx.scene.shape.Circle;
-import service.ConverterService;
 
 import java.util.ArrayList;
 
@@ -34,11 +34,11 @@ public class TrafficLight implements TrafficLightInterface {
         // set provided circles visible
         getState().getCircles().forEach(circle -> circle.setVisible(true));
 
-        // print model.state name
+        // print com.csbme.awe.model.state name
         int delayInSeconds = (getState().getDuration());
         textArea.appendText(getState().getClass().getSimpleName() + ": " + delayInSeconds + " seconds" + "\n");
 
-        // show current model.state for x seconds
+        // show current com.csbme.awe.model.state for x seconds
         try {
             Thread.sleep(ConverterService.secondsToNanoseconds(delayInSeconds));
         } catch (InterruptedException e) {

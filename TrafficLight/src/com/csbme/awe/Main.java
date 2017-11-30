@@ -1,11 +1,10 @@
-package app;
+package com.csbme.awe;
 
-import controller.RootLayoutController;
-import controller.TrafficLightController;
+import com.csbme.awe.controller.RootLayoutController;
+import com.csbme.awe.controller.TrafficLightController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -46,7 +45,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("Traffic Light Simulator 3000 'Final Apex Elite'-Edition");
 
         // Set the application icon.
-        this.primaryStage.getIcons().add(new Image("resources/images/Java.png"));
+        // this.primaryStage.getIcons().add(new Image("resources/images/Java.png"));
         primaryStage.setResizable(false);
 
         initRootLayout();
@@ -76,7 +75,7 @@ public class Main extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
@@ -99,7 +98,7 @@ public class Main extends Application {
         try {
             // Load overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/TrafficLight.fxml"));
+            loader.setLocation(Main.class.getResource("view/TrafficLight.fxml"));
             AnchorPane trafficLight = loader.load();
 
             // Set trafficLight into the center of root layout.

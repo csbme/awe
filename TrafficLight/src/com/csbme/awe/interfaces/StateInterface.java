@@ -1,4 +1,4 @@
-package interfaces;
+package com.csbme.awe.interfaces;
 
 import javafx.scene.shape.Circle;
 

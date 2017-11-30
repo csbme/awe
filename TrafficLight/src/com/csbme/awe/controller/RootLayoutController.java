@@ -1,6 +1,6 @@
-package controller;
+package com.csbme.awe.controller;
 
-import app.Main;
+import com.csbme.awe.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
