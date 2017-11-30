@@ -5,6 +5,7 @@ import com.csbme.awe.controller.TrafficLightController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -45,7 +46,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("Traffic Light Simulator 3000 'Final Apex Elite'-Edition");
 
         // Set the application icon.
-        // this.primaryStage.getIcons().add(new Image("resources/images/Java.png"));
+        this.primaryStage.getIcons().add(new Image("images/Java.png"));
         primaryStage.setResizable(false);
 
         initRootLayout();
