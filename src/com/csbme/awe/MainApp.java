@@ -119,7 +119,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Wham! - Last Christmas");
+        this.primaryStage.setTitle("Spectacular Meltdown");
 
         initRootLayout();
         showPersonOverview();
