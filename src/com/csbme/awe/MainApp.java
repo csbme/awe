@@ -1,5 +1,6 @@
 package com.csbme.awe;
 
+import com.csbme.awe.Service.Sqlite;
 import com.csbme.awe.controller.RecordEditDialogController;
 import com.csbme.awe.controller.RecordOverviewController;
 import com.csbme.awe.controller.RootLayoutController;
@@ -13,10 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 import java.io.IOException;
 
@@ -24,6 +23,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    public Connection connection;
 
     private ObservableList<Record> recordData = FXCollections.observableArrayList();
 
@@ -37,32 +37,7 @@ public class MainApp extends Application {
         recordData.add(new Record("Film", "6"));
     }
 
-    /**
-     * Connect to a sample database
-     */
-    public static void createNewDatabase() {
-
-        String url = "jdbc:sqlite:sqlite.db";
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public static void main(String[] args) {
-        createNewDatabase();
         launch(args);
     }
 
