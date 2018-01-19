@@ -1,6 +1,7 @@
 package com.csbme.awe.controller;
 
 import com.csbme.awe.MainApp;
+import com.csbme.awe.Service.Sqlite;
 import com.csbme.awe.model.Record;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,7 +9,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
 import java.text.DecimalFormat;
 import java.util.stream.DoubleStream;
 
@@ -22,7 +22,6 @@ public class RecordOverviewController {
     private TableColumn<Record, String> subjectColumn;
     @FXML
     private TableColumn<Record, String> gradeColumn;
-
     @FXML
     private Label subjectLabel;
     @FXML
@@ -39,6 +38,8 @@ public class RecordOverviewController {
     // Reference to the main application.
     private MainApp mainApp;
 
+    private Sqlite sqlite;
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
@@ -52,6 +53,8 @@ public class RecordOverviewController {
 
     @FXML
     private void initialize() {
+        setSqlite(new Sqlite());
+
         // Initialize the person table with the two columns.
         subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         gradeColumn.setCellValueFactory(cellData -> cellData.getValue().gradeProperty());
@@ -68,9 +71,6 @@ public class RecordOverviewController {
     }
 
     private void showRecordDetails() {
-        // Record is null, remove all the text.
-        // subjectLabel.setText("");
-        // gradeLabel.setText("");
         setAverage();
         setSum();
         setMin();
@@ -104,7 +104,8 @@ public class RecordOverviewController {
         Record tempRecord = new Record();
         if (mainApp.showPersonEditDialog(tempRecord)) {
             mainApp.getRecordData().add(tempRecord);
-            setAverage();
+            showRecordDetails();
+            getSqlite().insert(tempRecord);
         }
     }
 
@@ -113,6 +114,7 @@ public class RecordOverviewController {
         Record selectedRecord = recordTable.getSelectionModel().getSelectedItem();
         if (selectedRecord != null) {
             if (mainApp.showPersonEditDialog(selectedRecord)) {
+
                 showRecordDetails();
             }
         } else {
@@ -123,9 +125,7 @@ public class RecordOverviewController {
     private void setAverage() {
         double sum = streamRecordTable().sum();
         double size = recordTable.getItems().size();
-        double average = (sum / size);
-
-        averageLabel.setText(doubleToString(average));
+        averageLabel.setText(doubleToString((sum / size)));
     }
 
     private void setSum() {
@@ -133,11 +133,11 @@ public class RecordOverviewController {
     }
 
     private void setMin() {
-        minLabel.setText(doubleToString(streamRecordTable().min().getAsDouble()));
+        minLabel.setText(doubleToString(streamRecordTable().min().orElse(0)));
     }
 
     private void setMax() {
-        maxLabel.setText(doubleToString(streamRecordTable().max().getAsDouble()));
+        maxLabel.setText(doubleToString(streamRecordTable().max().orElse(0)));
     }
 
     private DoubleStream streamRecordTable() {
@@ -145,13 +145,13 @@ public class RecordOverviewController {
         return recordTable.getItems().stream().mapToDouble(Record::getGradeValue);
     }
 
-    private boolean isNumberAtLeastZero(double number) {
+    private boolean isNumberGreaterThanZero(double number) {
 
-        return number >= 0;
+        return number > 0;
     }
 
     private String doubleToString(double number) {
-        if (isNumberAtLeastZero(number)) {
+        if (isNumberGreaterThanZero(number)) {
             return doubleWithTwoDecimals(number);
         } else {
             return NOT_AVAILABLE;
@@ -162,5 +162,13 @@ public class RecordOverviewController {
         DecimalFormat decimalFormat = new DecimalFormat(FORMAT_TWO_DECIMALS);
 
         return decimalFormat.format(number);
+    }
+
+    public Sqlite getSqlite() {
+        return sqlite;
+    }
+
+    public void setSqlite(Sqlite sqlite) {
+        this.sqlite = sqlite;
     }
 }
