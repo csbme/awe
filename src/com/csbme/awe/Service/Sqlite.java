@@ -15,10 +15,10 @@ public class Sqlite {
     private Connection connect() {
         String url = "jdbc:sqlite:sqlite.db";
 
-        Connection conn = null;
+        Connection connection = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(url);
             System.out.println("db connection ok");
 
         } catch (SQLException e) {
@@ -28,7 +28,7 @@ public class Sqlite {
             e.printStackTrace();
         }
 
-        return conn;
+        return connection;
     }
 
     /**
